@@ -28,10 +28,4 @@ No API keys. No internet required after setup. Just pure open-source LLM power.
 
 ---
 
-## 📦 Setup Instructions
 
-### 1. Clone the repo
-
-```bash
-git clone https://github.com/yourusername/ai-resume-reviewer.git
-cd ai-resume-reviewer
