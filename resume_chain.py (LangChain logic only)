@@ -1,0 +1,38 @@
+# resume_chain.py
+
+from langchain.llms import LlamaCpp
+from langchain.prompts import PromptTemplate
+from langchain.chains import LLMChain
+
+# Load the LLaMA model
+def load_llm(model_path="llama-model.gguf"):
+    llm = LlamaCpp(
+        model_path=model_path,
+        n_ctx=2048,
+        temperature=0.7,
+        max_tokens=1024,
+        verbose=False,
+    )
+    return llm
+
+# Define prompt template
+prompt = PromptTemplate(
+    input_variables=["resume_text"],
+    template="""
+### Instruction:
+You are a professional resume reviewer. Analyze the resume below and provide:
+
+1. A short summary of the candidate  
+2. Strengths  
+3. Weaknesses  
+4. Suggestions to improve the resume  
+5. ATS keywords missing
+
+### Resume:
+{resume_text}
+"""
+)
+
+# Create LangChain chain
+def get_resume_chain(llm):
+    return LLMChain(llm=llm, prompt=prompt)
